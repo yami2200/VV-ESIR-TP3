@@ -26,3 +26,10 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. On test ici deux listes de valeurs qui doivent être toutes vraies ou fausses. Ici comme notre fonction est assez simple on se permet de tester toute la lsite d'un coup mais on préfère en règle générale faire des cas de test pour chaque valeur afin d'identifier exactement de quel cas de test vient l'erreur.
+
+Pour les tests vrais, on commence par tester les valeurs de base soit une chaîne de caractères vide ou juste des parenthèses par exemple, puis on teste des structures de plus en plus complexes en vérifiant différentes combinaisons d'imbrication et de suites d'imbrication.
+
+Pour les tests faux, on commence aussi par tester les paramètres les plus simples qui doivent renvoyer faux, comme juste une parenthèse, puis on teste avec des erreurs au début, à différents stades de l'imbrication ou à la fin par exemple. 
+
+2. On
