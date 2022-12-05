@@ -32,4 +32,4 @@ Pour les tests vrais, on commence par tester les valeurs de base soit une chaîn
 
 Pour les tests faux, on commence aussi par tester les paramètres les plus simples qui doivent renvoyer faux, comme juste une parenthèse, puis on teste avec des erreurs au début, à différents stades de l'imbrication ou à la fin par exemple. 
 
-2. On
+2. Avec l'outil de coverage d'IntelliJ, il est possible de trouver le pourcentage de code couvert par les tests. Ici, on trouve 100%, les test couvrent toutes les lignes du programme, les premiers cas de tests étaient bien choisis.

@@ -29,4 +29,7 @@ public class StringUtils {
         return memory.isEmpty();
     }
 
+    public static void main(String[] args) {
+    }
+
 }
