@@ -58,4 +58,24 @@ if (!latch.await(3, TimeUnit.SECONDS)) {
 }
 ```
 
-4. 
+4. L'utilisation de la méthode assertThrows apporte son lot d'avantages par rapport à l'ancienne méthode. 
+- On peut parfaitement controler à quel endroit se produit l'exception, avant l'exception pouvait se produire dans un bloc de code/méthode inattendu au sein du cas de test. Avec la méthode de JUnit5, on fait un assertThrows sur la méthode où l'on attend l'exception.
+- On peut récupérer l'exception et l'utiliser dans le cas de test. Par exemple, on peut récupérer le message de l'exception et l'utiliser dans le cas de test.
+```java
+@Test
+void testException() {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> { method();});
+
+    String expectedMessage = "a message";
+    String actualMessage = exception.getMessage();
+
+    assertEquals(actualMessage, expectedMessage);
+}
+```
+- Il est possible de faire apparaitre un message d'erreur personnalisé en cas d'échec de l'assertion.
+```java
+@Test
+void testException() {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> { method();}, "No exception Thrown");
+}
+```
