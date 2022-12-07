@@ -10,7 +10,6 @@ public class StringUtils {
         assert(c=='['||c=='{'||c=='(');
         if(c=='[') { return ']'; }
         if(c=='{') { return '}'; }
-        //if(str.equals("(")) { return ")"; }
         return ')';
     }
 
