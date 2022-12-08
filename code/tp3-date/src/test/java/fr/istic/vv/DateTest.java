@@ -53,8 +53,23 @@ class DateTest {
     }
 
     @Test
-    public void isValidDateTest_InvalidDay30DaysMonth() {
+    public void isValidDateTest_InvalidDay30DaysMonthJune() {
         assertFalse(dateObject.isValidDate(31,6,2022));
+    }
+
+    @Test
+    public void isValidDateTest_InvalidDay30DaysMonthApril() {
+        assertFalse(dateObject.isValidDate(31,4,2022));
+    }
+
+    @Test
+    public void isValidDateTest_InvalidDay30DaysMonthSept() {
+        assertFalse(dateObject.isValidDate(31,9,2022));
+    }
+
+    @Test
+    public void isValidDateTest_InvalidDay30DaysMonthNov() {
+        assertFalse(dateObject.isValidDate(31,11,2022));
     }
 
     @Test
@@ -125,8 +140,18 @@ class DateTest {
     }
 
     @Test
+    public void isLeapYearTest_LeapYearMod400() {
+        assertTrue(dateObject.isLeapYear(2000));
+    }
+
+    @Test
     public void isLeapYearTest_NotLeapYear() {
         assertFalse(dateObject.isLeapYear(2021));
+    }
+
+    @Test
+    public void isLeapYearTest_NotLeapYearMod100() {
+        assertFalse(dateObject.isLeapYear(1800));
     }
 
     @Test
@@ -210,10 +235,15 @@ class DateTest {
         assertEquals(date.previousDate(), new Date(28, 2, 2021));
     }
 
+    @Test
+    void previousDateTest_firstValidDate() {
+        assertThrows(IllegalArgumentException.class, () -> new Date(1, 1, 0).previousDate());
+    }
+
     /* #####################  COMPARE TO TESTS  ##################### */
 
     @Test
-    public void compareToTest_SameDate() {
+    public void compareToTest_EqualsDate() {
         Date date = new Date(19, 3, 2014);
         assertEquals(date.compareTo(new Date(19, 3, 2014)), 0);
     }
@@ -252,6 +282,12 @@ class DateTest {
     public void compareToTest_DayAfter() {
         Date date = new Date(20, 3, 2014);
         assertEquals(date.compareTo(new Date(19, 3, 2014)), 1);
+    }
+
+    @Test
+    public void compareToTest_NullDate() {
+        Date date = new Date(20, 3, 2014);
+        assertThrows(NullPointerException.class, () -> date.compareTo(null));
     }
 
     /* #####################  EQUALS TESTS  ##################### */

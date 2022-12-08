@@ -82,7 +82,8 @@ Liste des partitions:
     * `first day of month with 30 days`: day == 1 and month in [4, 6, 9, 11]
     * **first day of month with 31 days**
       * `first day of month with 31 days (except january, march)` : : day == 1 and month in [5, 7, 8, 10, 12]
-      * `first day of year`: month == 1 and day == 1
+      * `first day of year`: month == 1 and day == 1 and year != 0
+      * `first valid date` : month == 1 and day == 1 and year == 0
       * `first day of march leap year`: day == 1 and month == 2 and isLeapYear(year)
       * `first day of march non leap year`: day == 1 and month == 2 and !isLeapYear(year)
   * **other day**: 
@@ -154,3 +155,49 @@ Liste des partitions testées pour chaque méthode :
 | "valid date"->`any` (date1 == date2) |
 | "valid date"->`any` (date1 != date2) |
 
+### 2. Code Coverage
+
+On lance donc nos tests à l'aide du code coverage d'IntelIJ. On obtient un score de 100% ce qui nous montre que nos tests couvrent déjà 100% de notre code. (Ce résultat ne témoigne pas forcément d'une absence de bug)
+Néanmoins, il n'y donc aucun test à ajouter à cette étape.
+
+![Code Coverage](../images/coverage_date.png)
+
+### 3. Base Choice Coverage
+
+Pour s'assurer de la validité de la date, ou encore de pouvoir détecter les spécificités liées aux années bissextiles et les mois de différentes tailles, il y a un grand nombre de conditions booléennes.
+
+#### Constructeur : 
+
+On a un booléen vérifiant la validité de la date et nous avons déjà deux tests pour le constructeur avec un input valide et un input invalide.
+Il n'y a donc rien à ajouter ici.
+
+#### isValidDate :
+
+On teste déjà les premières conditions sur les nombres limites des jours, mois et années. 
+Ensuite pour les jours en février, on a déjà un test qui passe par chaque évaluation booléenne de la condition.
+Pour les mois à 30 jours, on ne teste pas vraiment tous les mois qui ont 30 jours dans les tests. On peut donc ajouter quelques tests qui vérifient les mois de 30 jours.
+
+#### isLeapYear :
+
+Ici, on a 3 opérations booléennes. On remarque que nous avons pas testé le cas d'une bissextile qui est modulo 400. On peut donc déjà ajouter un test pour ça.
+Nous n'avions également pas testé le cas d'une année divisible par 4 et 100 en même temps, on peut donc rajouter un autre test pour ça.
+
+#### nextDate :
+
+Pour nextDate, nous avons déjà testé tous les cas de conditions où le jour représente la fin d'un mois et aussi de l'année.
+On a testé une date au milieu d'un mois, donc il n'y a pas vraiment de tests à rajouter pour le Base Choice Coverage.
+
+#### previousDate :
+
+Pour previousDate, nous avons déjà testé tous les cas de conditions où le jour représente le début d'un mois et aussi de l'année.
+On a testé une date au milieu d'un mois, donc il n'y a pas vraiment de tests à rajouter pour le Base Choice Coverage.
+
+#### compareTo :
+
+Pour compareTo, on a de simple if à une condition booléenne et on a déja un test par condition. On a juste constater le manque d'un test pour une valeur null.
+
+### 4. Mutation :
+
+On lance donc un mutation Coverage avec PIT. A la fin du test, 96 mutations ont été tué sur un total de 115. Il faut donc étudier les cas pour voir si ce sont des mutations équivalentes ou pas.
+
+![Mutation Coverage](../images/mutation_date.png)

@@ -23,7 +23,7 @@ class Date implements Comparable<Date> {
         if (day < 1 || day > 31) {
             return false;
         }
-        if (month == 2 && (day > 29 || !isLeapYear(year) && day > 28)) {
+        if (month == 2 && (day > 29 || (!isLeapYear(year) && day > 28))) {
             return false;
         }
         if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
