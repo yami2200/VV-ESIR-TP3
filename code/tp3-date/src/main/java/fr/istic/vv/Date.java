@@ -75,7 +75,7 @@ class Date implements Comparable<Date> {
         if(this.year > other.year) return 1;
         if(this.month < other.month) return -1;
         if(this.month > other.month) return 1;
-        if(this.day < other.day) return -1;
+        if(this.day <= other.day) return -1;
         return 1;
     }
 

@@ -9,13 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DateTest {
 
-    public static Date dateObject;
-
-    @BeforeAll
-    public static void init() {
-        dateObject = new Date(1, 1, 2022);
-    }
-
     /* #####################  CONSTRUCTOR TESTS  ##################### */
 
     @Test
@@ -35,100 +28,138 @@ class DateTest {
 
     @Test
     public void isValidDateTest_InvalidDay_lower() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(0,1,2022));
     }
     @Test
     public void isValidDateTest_InvalidDay_upper() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(32,1,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidMonth_lower() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(1,0,2022));
     }
 
     @Test
+    public void isValidDateTest_ValidMonth_boundary() {
+        Date dateObject = new Date(1, 1, 2020);
+        assertTrue(dateObject.isValidDate(1,1,2022));
+    }
+
+    @Test
+    public void isValidDateTest_ValidMonth_boundary2() {
+        Date dateObject = new Date(1, 1, 2020);
+        assertTrue(dateObject.isValidDate(1,12,2022));
+    }
+
+    @Test
     public void isValidDateTest_InvalidMonth_upper() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(1,13,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidDay30DaysMonthJune() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(31,6,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidDay30DaysMonthApril() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(31,4,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidDay30DaysMonthSept() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(31,9,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidDay30DaysMonthNov() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(31,11,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidDayFebruary() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(30,2,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidDay28DaysMonth() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(29,2,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidYear() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(1,1,-1));
     }
 
     @Test
+    public void isValidDateTest_ValidYearBoundary() {
+        Date dateObject = new Date(1, 1, 2020);
+        assertTrue(dateObject.isValidDate(1,1,0));
+    }
+
+    @Test
     public void isValidDateTest_InvalidDayMonth() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(-5,22,2022));
     }
 
     @Test
     public void isValidDateTest_InvalidDayYear() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(-5,5,-47));
     }
 
     @Test
     public void isValidDateTest_InvalidMonthYear() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(5,55,-47));
     }
 
     @Test
     public void isValidDateTest_InvalidDayMonthYear() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isValidDate(887,-57,-427));
     }
 
     @Test
     public void isValidDateTest_LastDay30DaysMonth() {
+        Date dateObject = new Date(1, 1, 2020);
         assertTrue(dateObject.isValidDate(30,9,2022));
     }
 
     @Test
     public void isValidDateTest_LastDay31DaysMonth() {
+        Date dateObject = new Date(1, 1, 2020);
         assertTrue(dateObject.isValidDate(31,1,2022));
     }
 
     @Test
     public void isValidDateTest_LastDay28DaysMonth() {
+        Date dateObject = new Date(1, 1, 2020);
         assertTrue(dateObject.isValidDate(28,2,2022));
     }
 
     @Test
     public void isValidDateTest_LastDay29DaysMonth() {
+        Date dateObject = new Date(1, 1, 2020);
         assertTrue(dateObject.isValidDate(29,2,2020));
     }
 
     @Test
     public void isValidDateTest_ValidDate() {
+        Date dateObject = new Date(1, 1, 2020);
         assertTrue(dateObject.isValidDate(19,3,2014));
     }
 
@@ -136,26 +167,31 @@ class DateTest {
 
     @Test
     public void isLeapYearTest_LeapYear() {
+        Date dateObject = new Date(1, 1, 2020);
         assertTrue(dateObject.isLeapYear(2020));
     }
 
     @Test
     public void isLeapYearTest_LeapYearMod400() {
+        Date dateObject = new Date(1, 1, 2020);
         assertTrue(dateObject.isLeapYear(2000));
     }
 
     @Test
     public void isLeapYearTest_NotLeapYear() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isLeapYear(2021));
     }
 
     @Test
     public void isLeapYearTest_NotLeapYearMod100() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isLeapYear(1800));
     }
 
     @Test
     public void isLeapYearTest_InvalidYear() {
+        Date dateObject = new Date(1, 1, 2020);
         assertFalse(dateObject.isLeapYear(-1));
     }
 
@@ -169,14 +205,18 @@ class DateTest {
 
     @Test
     public void nextDateTest_LastDay30DaysMonth() {
-        Date date = new Date(30, 6, 2001);
-        assertEquals(date.nextDate(), new Date(1, 7, 2001));
+        for(int month : new int[]{4, 6, 9, 11}) {
+            Date date = new Date(30, month, 2014);
+            assertEquals(date.nextDate(), new Date(1, month + 1, 2014));
+        }
     }
 
     @Test
-    public void nextDateTest_LastDay31DaysMonth() {
-        Date date = new Date(31, 1, 2001);
-        assertEquals(date.nextDate(), new Date(1, 2, 2001));
+    public void nextDateTest_LastDay31DaysMonths() {
+        for(int month : new int[]{1, 3, 5, 7, 8, 10}) {
+            Date date = new Date(31, month, 2001);
+            assertEquals(date.nextDate(), new Date(1, month + 1, 2001));
+        }
     }
 
     @Test

@@ -198,6 +198,26 @@ Pour compareTo, on a de simple if à une condition booléenne et on a déja un t
 
 ### 4. Mutation :
 
-On lance donc un mutation Coverage avec PIT. A la fin du test, 96 mutations ont été tué sur un total de 115. Il faut donc étudier les cas pour voir si ce sont des mutations équivalentes ou pas.
+On lance donc un mutation Coverage avec PIT. A la fin du test, 96 mutations ont été tuées sur un total de 115. Il faut donc étudier les cas pour voir si ce sont des mutations équivalentes ou pas.
 
 ![Mutation Coverage](../images/mutation_date.png)
+
+La première cause de ce résultat était l'utilisation d'un @Before pour initialiser un objet Date qui pouvait servir pour plusieurs tests. On a donc retirer cette annotation et on a créé un nouvel objet Date pour chaque test.
+
+![Mutation Coverage](../images/mutation_date2.png)
+
+Ensuite, on s'intéresse à une ligne qui n'est pas correctement testée. Il s'agit de la méthode privée isLastDayOfMonth(), en changeant des égalités pour les mois de 31 jours, les tests passent toujours.
+
+![Mutation Coverage](../images/mutation_lastday.png)
+
+Pour fixer cela, on ajoute dans les tests de nextDate(), des cas pour chaque fin de mois de 31 jours.
+Ces nouveaux cas de tests permettent de tuer les mutations.
+
+![Mutation Coverage](../images/mutation_date3.png)
+
+Le dernier mutant qui survit est un mutant équivalent.
+
+![Mutation Coverage](../images/mutant_equivalent.png)
+
+Le mutant équivalent remplace l'opérateur "<" par l'opérateur "<=" dans la méthode compareTo() à l'avant dernière ligne. Cela n'a pas d'impact sur le comportement du code car arrivé à cette ligne, on sait que this.year == other.year et this.month == other.month.
+Donc si on rajoute un égal au jour, on ne pourra plus arriver à cette ligne car le cas de l'égalité des dates est traité à la deuxième ligne.
