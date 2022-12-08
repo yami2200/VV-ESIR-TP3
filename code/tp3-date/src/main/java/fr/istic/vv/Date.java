@@ -23,7 +23,7 @@ class Date implements Comparable<Date> {
         if (day < 1 || day > 31) {
             return false;
         }
-        if (month == 2 && (day > 29 || !isLeapYear(year) && day > 28)) {
+        if (month == 2 && (day > 29 || (!isLeapYear(year) && day > 28))) {
             return false;
         }
         if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
@@ -75,7 +75,7 @@ class Date implements Comparable<Date> {
         if(this.year > other.year) return 1;
         if(this.month < other.month) return -1;
         if(this.month > other.month) return 1;
-        if(this.day < other.day) return -1;
+        if(this.day <= other.day) return -1;
         return 1;
     }
 
@@ -86,5 +86,17 @@ class Date implements Comparable<Date> {
         if (!(obj instanceof Date)) return false;
         Date other = (Date) obj;
         return this.day == other.day && this.month == other.month && this.year == other.year;
+    }
+
+    public int getDay() {
+        return this.day;
+    }
+
+    public int getMonth() {
+        return this.month;
+    }
+
+    public int getYear(){
+        return this.year;
     }
 }
