@@ -21,7 +21,7 @@ Include the improved test code in this file.
 | JUnit4SuitesShouldUseSuiteAnnotation | (JUNIT4) Avoir une suite de test qui n'est pas annotée avec le @RunWith.                                                                                |
 | JUnit4TestShouldUseAfterAnnotation   | (JUNIT4) Avoir une méthode tearDown (appelée après les tests) qui n'est pas annotée avec @After.                                                        |
 | JUnit4TestShouldUseBeforeAnnotation  | (JUNIT4) Avoir une méthode setUp (appelée avant les tests) qui n'est pas annotée avec @Before.                                                          |
-| JUnit4TestShouldUseTestAnnotation    | (JUNIT4) Avoir une méthode en publique commencant par "test" sans avoir l'annotation @Test.                                                             |
+| JUnit4TestShouldUseTestAnnotation    | (JUNIT4) Avoir une méthode en publique commençant par "test" sans avoir l'annotation @Test.                                                             |
 | JUnitAssertionsShouldIncludeMessage  | Utiliser la méthode assertEquals() avec deux arguments (sans utiliser la version à 3 arguments, le premier servant de message de test en cas d'erreur)  |
 | JUnitSpelling                        | Utiliser une méthode de JUnit3 tel que tearDown ou setUp en l'orthographiant incorrectement. (Notamment avec des majuscules mal placés)                 |
 | JUnitStaticSuite                     | Avoir la méthode suite() qui n'est pas publique et/ou statique.                                                                                         |
@@ -35,7 +35,7 @@ Include the improved test code in this file.
 | UseAssertTrueInsteadOfAssertEquals   | Utiliser l'assertion assertEquals pour vérifier la valeur d'une variable / méthode retournant un booléen (au lieu d'utiliser assertTrue ou assertFalse) |
 
 En lançant PMD sur le projet Apache Commons Collections, nous avons détecté plusieurs tests smells JUnitAssertionsShouldIncludeMessage. Cela indique que certaines assertions n'ont pas de message affiché si jamais elles échouent.
-Ainsi dans ListOrderedSetTest on a :
+Ainsi, dans ListOrderedSetTest on a :
 
 ```java
 @Test

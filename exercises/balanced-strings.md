@@ -26,17 +26,17 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
-1. On test ici deux listes de valeurs qui doivent être toutes vraies ou fausses. Ici comme notre fonction est assez simple on se permet de tester toute la liste d'un coup mais on préfère en règle générale faire des cas de test pour chaque valeur afin d'identifier exactement de quel cas de test vient l'erreur.
+1. On test ici deux listes de valeurs qui doivent être toutes vraies ou fausses. Ici, comme notre fonction est assez simple, on se permet de tester toute la liste d'un coup, mais on préfère en règle générale faire des cas de test pour chaque valeur afin d'identifier exactement de quel cas de test vient l'erreur.
 
 Pour les tests vrais, on commence par tester les valeurs de base soit une chaîne de caractères vide ou juste des parenthèses par exemple, puis on teste des structures de plus en plus complexes en vérifiant différentes combinaisons d'imbrication et de suites d'imbrication.
 
-Pour les tests faux, on commence aussi par tester les paramètres les plus simples qui doivent renvoyer faux, comme juste une parenthèse, puis on teste avec des erreurs au début, à différents stades de l'imbrication ou à la fin par exemple. 
+Pour les tests faux, on commence aussi par tester les paramètres les plus simples qui doivent renvoyer faux, comme juste une parenthèse, puis on teste avec des erreurs au début, à différents stades de l'imbrication ou à la fin par exemple.
 
-On peut remarquer que notre code est assez robuste car il est possible d'insérer n'importe quelle chaîne de caractères n'étant pas une parenthèse, un crochet ou une accolade à n'importe quel endroit.
+On peut remarquer que notre code est assez robuste, car il est possible d'insérer n'importe quelle chaîne de caractères n'étant pas une parenthèse, un crochet ou une accolade à n'importe quel endroit.
 
 2. Avec l'outil de couverture de code par le test d'IntelliJ, il est possible de trouver le pourcentage de code couvert par les tests. Ici, on trouve 100%, les tests couvrent toutes les lignes du programme, les premiers cas de tests étaient bien choisis.
 
-3. Dans notre code, on a au maximum deux opérateurs logiques dans nos prédicats, pas besoin de vérifier le Base Choice Coverage. 
+3. Dans notre code, on a au maximum deux opérateurs logiques dans nos prédicats, pas besoin de vérifier le Base Choice Coverage.
 
 Ensuite, pour les if de vérification de caractère, une seule des trois conditions du if ne peut être vraie à la fois, ce qui donne vrai. Dans le cas contraire, c'est qu'il n'est pas un des trois caractères.
 Il reste les deux prédicats simples du cas où l'on a un caractère fermant. Ceux-ci sont faux à moins d'avoir reconnu le caractère ouvrant correspondant ajouté plus tôt lors du passage dans l'autre if.

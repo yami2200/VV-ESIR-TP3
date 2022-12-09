@@ -92,7 +92,7 @@ Liste des partitions:
 
 Chaque intersection de partitions est vide et l'union de toutes les partitions est l'ensemble du domaine d'input.
 
-Pour chaque méthode, on testera un input venant de chaque partition que l'on veut tester par méthode. Parfois, on ne souhaitera pas forcément tester un input venant d'une partition particulière mais plutot n'importe quel input d'un groupement de partitions. Les différents groupements sont listés au-dessus (texte non surligné).
+Pour chaque méthode, on testera un input venant de chaque partition que l'on veut tester par méthode. Parfois, on ne souhaitera pas forcément tester un input venant d'une partition particulière, mais plutôt n'importe quel input d'un groupement de partitions. Les différents groupements sont listés au-dessus (texte non surligné).
 
 
 Liste des partitions testées pour chaque méthode :
@@ -166,20 +166,20 @@ Néanmoins, il n'y donc aucun test à ajouter à cette étape.
 
 Pour s'assurer de la validité de la date, ou encore de pouvoir détecter les spécificités liées aux années bissextiles et les mois de différentes tailles, il y a un grand nombre de conditions booléennes.
 
-#### Constructeur : 
+#### Constructeur :
 
 On a un booléen vérifiant la validité de la date et nous avons déjà deux tests pour le constructeur avec un input valide et un input invalide.
 Il n'y a donc rien à ajouter ici.
 
 #### isValidDate :
 
-On teste déjà les premières conditions sur les nombres limites des jours, mois et années. 
-Ensuite pour les jours en février, on a déjà un test qui passe par chaque évaluation booléenne de la condition.
+On teste déjà les premières conditions sur les nombres limites des jours, mois et années.
+Ensuite, pour les jours en février, on a déjà un test qui passe par chaque évaluation booléenne de la condition.
 Pour les mois à 30 jours, on ne teste pas vraiment tous les mois qui ont 30 jours dans les tests. On peut donc ajouter quelques tests qui vérifient les mois de 30 jours.
 
 #### isLeapYear :
 
-Ici, on a 3 opérations booléennes. On remarque que nous avons pas testé le cas d'une bissextile qui est modulo 400. On peut donc déjà ajouter un test pour ça.
+Ici, on a 3 opérations booléennes. On remarque que nous n'avons pas testé le cas d'une bissextile qui est modulo 400. On peut donc déjà ajouter un test pour ça.
 Nous n'avions également pas testé le cas d'une année divisible par 4 et 100 en même temps, on peut donc rajouter un autre test pour ça.
 
 #### nextDate :
@@ -194,15 +194,14 @@ On a testé une date au milieu d'un mois, donc il n'y a pas vraiment de tests à
 
 #### compareTo :
 
-Pour compareTo, on a de simple if à une condition booléenne et on a déja un test par condition. On a juste constater le manque d'un test pour une valeur null.
-
+Pour compareTo, on a de simple if à une condition booléenne et on a déjà un test par condition. On a juste constaté le manque d'un test pour une valeur null.
 ### 4. Mutation :
 
 On lance donc un mutation Coverage avec PIT. A la fin du test, 96 mutations ont été tuées sur un total de 115. Il faut donc étudier les cas pour voir si ce sont des mutations équivalentes ou pas.
 
 ![Mutation Coverage](../images/mutation_date.png)
 
-La première cause de ce résultat était l'utilisation d'un @Before pour initialiser un objet Date qui pouvait servir pour plusieurs tests. On a donc retirer cette annotation et on a créé un nouvel objet Date pour chaque test.
+La première cause de ce résultat était l'utilisation d'un @Before pour initialiser un objet Date qui pouvait servir pour plusieurs tests. On a donc retiré cette annotation et on a créé un nouvel objet Date pour chaque test.
 
 ![Mutation Coverage](../images/mutation_date2.png)
 
@@ -219,5 +218,5 @@ Le dernier mutant qui survit est un mutant équivalent.
 
 ![Mutation Coverage](../images/mutant_equivalent.png)
 
-Le mutant équivalent remplace l'opérateur "<" par l'opérateur "<=" dans la méthode compareTo() à l'avant dernière ligne. Cela n'a pas d'impact sur le comportement du code car arrivé à cette ligne, on sait que this.year == other.year et this.month == other.month.
-Donc si on rajoute un égal au jour, on ne pourra plus arriver à cette ligne car le cas de l'égalité des dates est traité à la deuxième ligne.
+Le mutant équivalent remplace l'opérateur "<" par l'opérateur "<=" dans la méthode compareTo() à l'avant-dernière ligne. Cela n'a pas d'impact sur le comportement du code, car arrivé à cette ligne, on sait que this.year == other.year et this.month == other.month.
+Donc si on rajoute un égal au jour, on ne pourra plus arriver à cette ligne, car le cas de l'égalité des dates est traité à la deuxième ligne.
